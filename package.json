@@ -1,0 +1,14 @@
+{
+  "name": "lastmanstanding",
+  "version": "0.0.1",
+  "description": "guideapp",
+  "main": "server.js",
+  "author": "manu",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.10.8",
+    "method-override": "^2.3.10",
+    "mongoose": "^5.4.19",
+    "morgan": "^1.9.0"
+  }
+}
