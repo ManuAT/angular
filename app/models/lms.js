@@ -9,6 +9,10 @@ module.exports = mongoose.model('lms', {
         type: String,
         default : ""
     },
+    finishedTime :{
+        type: String,
+        default : ""
+    },
     task :{
         type: Number,
         default : 0

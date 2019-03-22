@@ -60,7 +60,9 @@ module.exports = function (app) {
     app.put('/api/lms', function (req, res) { 
         console.log("time",req.body.totalLostMin);
         
-       var newData ={};
+       var newData ={
+        finishedTime : new Date()
+       };
       
        if(req.body.task)  
        newData.task = req.body.task;
