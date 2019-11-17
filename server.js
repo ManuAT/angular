@@ -10,7 +10,7 @@ var methodOverride = require('method-override');
 var cors = require('cors');
 // configuration ===============================================================
 
-// mongoose.connect('mongodb+srv://manu:cat007@@cluster0-axhr4.mongodb.net/', {dbName: 'manu'});
+mongoose.connect('mongodb+srv://manu:cat007@@cluster0-axhr4.mongodb.net/', {dbName: 'manu'});
 
 
 
@@ -18,11 +18,13 @@ mongoose.connect(database.remoteUrl,(err)=>{
     console.log("err",err)
 }); 	// Connect to local MongoDB instance. A remoteUrl is also available (modulus.io)
 
+//********to view builded data  
+
 app.use(cors());
-app.use(express.static('dist/lms'));
+app.use(express.static('../basicapp/dist/basicapp'));
 
 app.get('/',(req,res)=>{
-res.sendFile('dist/lms/index.html');
+res.sendFile('../basicapp/dist/index.html');
 })
 
 // set the static files location /public/img will be /img for users
