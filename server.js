@@ -21,10 +21,10 @@ mongoose.connect(database.remoteUrl,(err)=>{
 //********to view builded data  
 
 app.use(cors());
-app.use(express.static('../basicapp/dist/basicapp'));
+app.use(express.static('dist/basicapp'));
 
 app.get('/',(req,res)=>{
-res.sendFile('../basicapp/dist/index.html');
+res.sendFile('dist/basicapp');
 })
 
 // set the static files location /public/img will be /img for users
