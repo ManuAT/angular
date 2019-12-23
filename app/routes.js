@@ -1,4 +1,6 @@
 var data = require('./models/data');
+var hostel = require('./models/hostel');
+
 var login = require('./models/login');
 var drop = require('./models/drop');
 
@@ -20,6 +22,15 @@ module.exports = function (app) {
            res.send(todo);
         });
     });
+    app.get('/api/hostel', function (req, res) { 
+        console.log("code",req.query)
+ hostel.find({},function (err, todo) {
+     console.log(todo)
+     if (err)
+         res.send(err);
+    res.send(todo);
+ });
+});
 
     app.post('/api/data', function (req, res) {  
         console.log(req.body);
@@ -35,6 +46,27 @@ module.exports = function (app) {
             asap : req.body.asap,
             location : req.body.location,
             comment : req.body.comment
+        }, function (err, todo) {
+            console.log("response");
+            if (err){
+                console.log("creation err");
+                res.send(err);
+            }
+            else{
+                console.log("created");
+                res.send(todo);
+            }
+        });
+       
+    });
+
+    app.post('/api/hostel', function (req, res) {  
+        console.log(req.body);
+              
+        hostel.create({
+            msg: req.body.name,
+            time: new Date(),
+            phone: req.body.phone
         }, function (err, todo) {
             console.log("response");
             if (err){
