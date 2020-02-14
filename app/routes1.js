@@ -5,7 +5,7 @@ var hostel = require('./models/hostel');
 
 var login = require('./models/login');
 var drop = require('./models/drop');
-var test_data = require('./models/test_data');
+
 function getvalues(res) {
     data.find(function (err, lms) {       
         if (err) {
@@ -63,12 +63,12 @@ module.exports = function (app) {
     });
 
     app.post('/api/hostel', function (req, res) {  
-        console.log(req.query);
+        console.log(req);
               
         hostel.create({
-            msg: req.query.msg,
+            msg: req.body.name,
             time: new Date(),
-            phone: req.query.phone
+            phone: req.body.phone
         }, function (err, todo) {
             console.log("response");
             if (err){
@@ -84,10 +84,10 @@ module.exports = function (app) {
     });
 
     app.get('/api/login', function (req, res) { 
-        console.log("code",req.query.phone)
+        console.log("code",req.query.username)
             
         login.findOne({
-         phone:  req.query.phone,
+         username:  req.query.username,
         }, function (err, todo) {
          console.log("todo",todo, 'err',err);
          if (err){
@@ -103,7 +103,7 @@ module.exports = function (app) {
         console.log(req.body.code);
               
         login.findOne({
-            phone:  req.body.phone,
+            username:  req.body.username,
         }, function (err, todo) {
             console.log("todo",todo, 'err',err);
             if (err){
@@ -114,12 +114,10 @@ module.exports = function (app) {
             else if(todo==null){
                 console.log("!exist");
                 login.create({
-                    phone: req.body.phone,
+                    username: req.body.username,
                     time: new Date(),
                     password : req.body.password,
-                    department : req.body.department,
-                    details : req.body.details
-
+                    department : req.body.department
                 }, function (err, todo) {
                     console.log("response");
                     if (err){
@@ -152,12 +150,12 @@ app.post('/api/drop', function (req, res) {
     console.log(req.body);
           
     drop.create({
-        item: req.body.item,
+        name: req.body.name,
         time: new Date(),
-        quantity: req.body.quantity,
-        cost : req.body.cost,
-        
-        exp : req.body.exp
+        phone: req.body.phone,
+        location : req.body.location,
+        location2 : req.body.location2,
+        items : req.body.items
     }, function (err, todo) {
         console.log("response");
         if (err){
@@ -171,42 +169,6 @@ app.post('/api/drop', function (req, res) {
     });
    
 });
-// Angular 
-app.get('/api/test_data', function (req, res) { 
-    console.log("code",req.query)
-test_data.find({},function (err, todo) {
- console.log(todo)
- if (err)
-     res.send(err);
-res.send(todo);
-});
-});
-
-app.post('/api/test_data', function (req, res) {  
-console.log(req.body);
-      
-test_data.create({
-    name: req.body.name,
-    time: new Date(),
-    phone: req.body.phone,
-    address : req.body.address,
-    
-    exp : req.body.exp
-}, function (err, todo) {
-    console.log("response");
-    if (err){
-        console.log("creation err");
-        res.send(err);
-    }
-    else{
-        console.log("created");
-        res.send(todo);
-    }
-});
-
-});
-
-// =========
 // gold project====
 app.post('/api/gold', function (req, res) {  
     console.log(req.body);
@@ -273,7 +235,7 @@ res.send(todo);
     // });
 
     app.get('*', function (req, res) {
-      //  res.sendFile(__dirname + '/public/index.html'); 
+        res.sendFile(__dirname + '/public/index.html'); 
     });
 
 

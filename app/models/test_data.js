@@ -1,23 +1,20 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('login', {
-    phone :{
+module.exports = mongoose.model('test_data', {
+    name :{
         type : String,
         default :""
     },
-    password :{
+    phone :{
         type:String,
         default:""
     },
-    department :{
-        type:Number,
-        default:0
-    },
+
     time :{
         type: String,
         default : ""
     },
-    details :{
+    address :{
         type : String,
         default :""
     },

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('drop', {
-    name :{
+    item :{
         type : String,
         default :""
     },
@@ -10,22 +10,19 @@ module.exports = mongoose.model('drop', {
         type: String,
         default : ""
     },
-    phone :{
+    quantity :{
         type:String,
         default:""
     },
     
-    location :{
+    cost :{
         type:String,
         default:""
     },
-    location2 :{
-        type:String,
-        default:""
-    },
-    items :{
-        type : String,
-        default: ""
+    
+    exp :{
+        type : Number,
+        default: 0 
     }
     
     
